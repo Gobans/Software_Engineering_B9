@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="menubar">
+  <view class="cancel">取消</view>
+  <view class="post">发布</view>
+</view>
+  
+<view class="question-container"> 
+  <view class="question-content">记笔记用什么平板好</view>
+  <view class="prize">悬赏：5金币</view>
+</view>
+
+<textarea class="textArea" placeholder="多行输入" ></textarea>
+<button>upload image</button> 

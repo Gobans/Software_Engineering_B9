@@ -1,0 +1,28 @@
+<!--pages/product/product.wxml-->
+<view class='top-container'>
+    <image class="product-img" src="{{product.imgUrl}}" mode="scaleToFill"></image>
+    <view class="product-info">
+        <text class="product-name">{{product.name}}</text>
+        <text class="product-time">{{product.time}}</text>
+        <text class="product-price">{{product.price}}</text>
+    </view>
+</view>
+
+<view class="score-board">
+    <view class="score-board-top">
+        <view class="title">懂派评分</view>
+        <view class="navi-eva">
+            <text class="eva-txt">去评价</text>
+            <image class="navi_img" src="/../images/navi.png" bindtap="evaluate"></image>
+        </view>
+    </view>
+    <view class="score">{{product.score}}</view>
+    <view class="rate-cnt">{{product.rateCnt}}人参与评分</view>
+</view>
+
+<view class="comments">
+    <view class="comments-title">评价 {{product.commentsCnt}} 条</view>
+    <view class="comments-content" wx:for="{{product_comments}}" wx:for-item="item">
+        <view class="comment-detail">{{item.content}}</view>
+    </view>
+</view>

@@ -1,0 +1,22 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/search/search",
+        "pages/product/product",
+        "pages/evaluate/evaluate",
+        "pages/publish/publish",
+        "pages/answer_specific/answer_specific",
+        "pages/mine/mine",
+        "pages/myAnswer/myAnswer",
+        "pages/myQuestion/myQuestion"
+    ],
+    "window": {
+        "backgroundColor": "#F6F6F6",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#F6F6F6",
+        "navigationBarTitleText": "懂派",
+        "navigationBarTextStyle": "black"
+    },
+    "sitemapLocation": "sitemap.json",
+    "style": "v2"
+}
