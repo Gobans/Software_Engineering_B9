@@ -1,0 +1,7 @@
+.icon-box{
+  text-align: center;
+  margin-top: 40%;
+}
+.icon-box-desc{
+  margin-top: 20px;
+}
