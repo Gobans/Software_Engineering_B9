@@ -14,6 +14,7 @@ exports.main = async (event, context) => {
       data: {
         user_id: event.user_id,
         question_content: event.question_content,
+        question_title: event.question_title,
         pic_url: event.pic_url,
         question_time: event.question_time,
       }

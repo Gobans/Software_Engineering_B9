@@ -29,7 +29,7 @@
     "minifyWXML": true
   },
   "appid": "wxe5966ba1facb0dfa",
-  "projectname": "miniprogram-3",
+  "projectname": "dongpai",
   "libVersion": "2.14.1",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {

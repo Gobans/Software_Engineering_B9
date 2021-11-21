@@ -1,0 +1,17 @@
+<!--index.wxml-->
+
+<view wx:if="{{success}}" class="icon-box">
+    <icon class="icon-box-img" type="success" size="93"></icon>
+    <view class="icon-box-ctn">
+      <view class="icon-box-title">发布成功</view>
+      <button bindtap="gotoIndex" type="primary" class="icon-box-desc">确认</button>
+    </view>
+  </view>
+
+  <view  wx:if="{{!success}}" class="icon-box">
+    <icon class="icon-box-img" type="warn" size="93"></icon>
+    <view class="icon-box-ctn">
+      <view class="icon-box-title">失败</view>
+      <button bindtap="gotoIndex" type="primary" class="icon-box-desc">确认</button>
+    </view>
+  </view>
