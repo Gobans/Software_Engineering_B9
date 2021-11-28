@@ -1,0 +1,153 @@
+/* pages/index/index.wxss */
+
+page{
+  background-color: #EAF0FB;
+}
+
+.user{
+  width: 90%;
+  height: 180rpx;
+  margin-top: 30rpx;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 4rpx solid #437dd4;
+  border-radius: 10rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userinfo{
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+}
+
+.userinfo-avatar{
+  height:130rpx;
+  width: 130rpx;
+  margin-left: 30rpx;
+  border-radius: 50%;
+}
+
+.userinfo-else{
+  height: 100%;
+  width: 400rpx;
+  color:black;
+  font-size: 32rpx;
+  font-weight: normal;
+  margin-left: 20rpx;
+}
+
+.userinfo-nickname{
+  height: 65%;
+  width: 300rpx;
+  color:black;
+  font-size: 34rpx;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+}
+
+
+.userinfo-exp-coin{
+  height: 30%;
+  width: 300rpx;
+  color:black;
+  font-size: 28rpx;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+  margin-bottom: 5%;
+}
+
+.management{
+  width: 140rpx;
+  margin-right: 20rpx;
+  line-height: 50rpx;
+  border: 4rpx solid #437dd4;
+  border-radius: 25rpx;
+  font-size: 25rpx;
+  color: rgb(0,0,0,0.6);
+  text-align: center;
+}
+
+
+.bottom-line{
+  margin-top: 60rpx;
+  padding-bottom: 80rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.buttom-button{
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.bottom-click{
+  background-color: #eaf0fb;
+  text-decoration: underline;
+}
+
+
+.tab-bar{
+  width: 100%;
+  height: 100rpx;
+  flex-direction: row;
+  margin-bottom: 0%;
+  background-color: rgb(240, 233, 233);
+  justify-content: center;
+  display:flex;
+  position: fixed;
+}
+
+.index{
+  height: 100%;
+  width: 20%;
+  margin-left:10%;
+  margin-right:5%;
+  flex-direction: column;
+}
+
+.index-pic{
+  height: 50rpx;
+  width: 50rpx;
+  color: black;
+}
+
+.index-txt{
+  font-size: 25rpx;
+  color:black;
+  text-align: center;
+}
+
+.publish{
+  height: 100%;
+  width: 20%;
+  margin-left:10%;
+  margin-right:10%;
+  flex-direction: column;
+}
+
+.publish-pic{
+  height: 50rpx;
+  width: 50rpx;
+  color: black;
+}
+
+.mine{
+  height: 100%;
+  width: 20%;
+  margin-left:5%;
+  margin-right:10%;
+  flex-direction: column;
+}
