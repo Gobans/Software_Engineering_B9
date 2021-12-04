@@ -1,8 +1,0 @@
-<!--pages/publish_question/publish_question.wxml-->
-<!--index.wxml-->
-<view class="menubar">
-  <view class="cancel">取消</view>
-  <view class="post">发布问题</view>
-</view>
-
-<textarea class="textArea" placeholder="请输入你的问题，需求越详细，越可能得到详细解答哦～示例：什么平板适合来记笔记？" ></textarea>
