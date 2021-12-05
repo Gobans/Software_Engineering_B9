@@ -9,10 +9,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-   question:"记笔记用什么平板好?",
-   content:"不用平板好!",
-   answers:3,
-   status:"有"
+   /*answers:[{question_title:"记笔记用什么平板好?",answer_content:"不用平板好!",like_cnt:3,is_accept:"有"},
+   {question_title:"记笔记用什么平板好?",answer_content:"不用平板好!",like_cnt:3,is_accept:"0"}]*/
+   answers:[],
+   user_id:""
+
   },
 
   getDetail:function(){
@@ -23,51 +24,97 @@ Page({
   },
 
   
-  deleteAnswer:function(){
-    wx.navigateTo({
-      url: '../index/index',
-    })
-    console.log("以后这里是删除问题操作")
-  },
+  deleteAnswer:function(e){
+    var that = this
+    console.log(e)
+    var id = e.target.dataset.id
+    console.log("answer_id:" + id)
 
-  getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
-    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        this.setData({
-          userInfo: res.userInfo,
-          nickName: res.userInfo.nickName,
-          avatarUrl: res.userInfo.avatarUrl,
-        })
-        app.globalData.userInfo = res.userInfo
-        this.onGetOpenid()
+    wx.showModal({
+      title: '提示',
+      content: '您确认要删除该回答吗',
+      confirmText: "确定",
+      showCancel: "取消",
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          //调用云函数进行删除
+          wx.cloud.callFunction({
+            name: 'deleteAnswer',
+            data: {
+              ans_id: id
+            },
+            success: res => {
+              console.log(res);
+              if (res.result.errCode == 0) {
+                wx.showModal({
+                  title: '恭喜',
+                  content: '删除成功',
+                  confirmText: "我知道了",
+                  showCancel: false,
+                  success(res) {
+                    if (res.confirm) {
+                      console.log('用户点击确定')
+                      that.getMyAnswers()
+                    } else if (res.cancel) {
+                      console.log('用户点击取消')
+                    }
+                  }
+                })
+              } else {
+                wx.showModal({
+                  title: '抱歉，出错了呢~',
+                  content: res.result.errMsg,
+                  confirmText: "我知道了",
+                  showCancel: false,
+                  success(res) {
+                    if (res.confirm) {
+                      console.log('用户点击确定')
+                    } else if (res.cancel) {
+                      console.log('用户点击取消')
+                    }
+                  }
+                })
+              }
+            },
+            fail: err => {
+              console.error('[云函数] [deleteAnswer] 调用失败', err)
+              wx.showModal({
+                title: '调用失败',
+                content: '请检查云函数是否已部署',
+                showCancel: false,
+                success(res) {
+                  if (res.confirm) {
+                    console.log('用户点击确定')
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
     })
   },
 
-
-  
-  onGetOpenid: function() {
+  getMyAnswers: function() {
     var that = this
     // 调用云函数
     wx.cloud.callFunction({
-      name: 'wechat_sign',
+      name: 'get_myAnswers',
       data: {
-        avatarUrl: that.data.avatarUrl,
-        gender: that.data.userInfo.gender,
-        nickName: that.data.nickName
+        user_id: that.data.user_id
       },
       success: res => {
         console.log(res);
         if (res.result.errCode == 0) {
           that.setData({
-            is_admin: res.result.data.user.is_admin
+            answers: res.result.data.answers
           })
-          app.globalData.logged = true
-          that.data.user = res.result.data.user
-          app.globalData.user = res.result.data.user
+          console.log(res.result.data.answers)
         } else {
           wx.showModal({
             title: '抱歉，出错了呢~',
@@ -85,7 +132,7 @@ Page({
         }
       },
       fail: err => {
-        console.error('[云函数] [wechat_sign] 调用失败', err)
+        console.error('[云函数] [get_myAnswers] 调用失败', err)
         wx.showModal({
           title: '调用失败',
           content: '请检查云函数是否已部署',
@@ -101,6 +148,7 @@ Page({
       }
     })
   },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -121,27 +169,20 @@ Page({
       })
       return
     }
+  
+    // 设定user_id
+    if(app.globalData.logged == undefined){
+      console.log("没有logged属性")
+    }
+    else if(app.globalData.logged){      
+      this.setData({
+        user_id:app.globalData.user.openid
+      })
+    }
 
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserProfile({
-            desc:"完善用户资料",
-            success: res => {
-              this.setData({
-                nickName: res.userInfo.nickName,
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-              app.globalData.userInfo = res.userInfo
-              this.onGetOpenid()
-            }
-          })
-        }
-      }
-    })
+    //接下来是云函数获取用户提问的信息
+    this.getMyAnswers()
+
   },
 
   /**

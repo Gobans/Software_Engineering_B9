@@ -13,8 +13,8 @@ Page({
     avatarUrl: "/images/user-unlogin.png",
     userInfo: {},
     user: {},
-    level: 2,
-    coin: 68,
+    exp: "--",
+    coin: "--",
     is_admin: false
   },
 
@@ -96,8 +96,10 @@ Page({
           nickName: res.userInfo.nickName,
           avatarUrl: res.userInfo.avatarUrl,
         })
-        app.globalData.userInfo = res.userInfo
+        console.log(res.userInfo)
+        //app.globalData.userInfo = res.userInfo    //保存openid
         this.onGetOpenid()
+        //console.log("检查app：",app.globalData)    //这行是检验
       }
     })
   },
@@ -118,11 +120,14 @@ Page({
         console.log(res);
         if (res.result.errCode == 0) {
           that.setData({
-            is_admin: res.result.data.user.is_admin
+            is_admin: res.result.data.user.is_admin,
+            exp: Math.floor(res.result.data.user.exp/100)+1,
+            coin: res.result.data.user.coin
           })
           app.globalData.logged = true
           that.data.user = res.result.data.user
           app.globalData.user = res.result.data.user
+          //console.log(app.globalData.user) 
         } else {
           wx.showModal({
             title: '抱歉，出错了呢~',
@@ -210,11 +215,29 @@ gotoMine:function(e){
               })
               app.globalData.userInfo = res.userInfo
               this.onGetOpenid()
+              console.log("自动更新了用户信息")   //
             }
           })
         }
       }
     })
+
+
+    //检验如果已经有登录信息则显示
+    if(app.globalData.logged == undefined){
+      console.log("没有logged属性")
+    }
+    else if(app.globalData.logged){      
+      this.setData({
+        nickName: app.globalData.user.nickName,
+        avatarUrl: app.globalData.user.avatarUrl,
+        exp: app.globalData.user.exp,
+        coin:app.globalData.user.coin,
+        is_admin:app.globalData.user.is_admin
+      })
+      console.log(app.globalData)   //
+      return
+    }
   },
 
   /**
@@ -228,6 +251,7 @@ gotoMine:function(e){
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    
   },
 
   /**
