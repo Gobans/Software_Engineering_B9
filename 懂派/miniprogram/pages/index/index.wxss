@@ -45,7 +45,7 @@
 
 .productinfo-name {
     margin-top: 10rpx;
-    font-size: 28rpx;
+    font-size: 20rpx;
     text-align: center;
 }
 
@@ -203,4 +203,20 @@
     width: 200rpx;
     background-color: white;
     text-decoration: underline;
+}
+
+.more{
+    height: 20 rpx;
+    width: 95%;
+    margin-right: 5%;
+    background-color: aquamarine;
+    position: relative;
+}
+
+
+.more-txt{
+    font-size: 5 rpx;
+    position: fixed;
+    right: 0;
+    margin-right: 24rpx;
 }
