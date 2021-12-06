@@ -10,7 +10,6 @@
         "pages/myAnswer/myAnswer",
         "pages/myQuestion/myQuestion",
         "pages/search_result/search_result",
-        "pages/publish_question/publish_question",
         "pages/question_detail/question_detail"
     ],
     "window": {
