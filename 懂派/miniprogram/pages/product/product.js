@@ -5,42 +5,91 @@ Page({
      * 页面的初始数据
      */
     data: {
-        product:{
-            id:1,
-            name: "ipad",
-            imgUrl: "/../images/ipad1.webp",
-            time:2020,
-            price:4999,
-            score:89,
-            rateCnt:200,
-            commentsCnt:123,
-        }
-    ,
-    product_comments:[{
-        id:1,
-        content:'hao'
-    }]
+        product_id: "",
+        name: "ipad",
+        pic_url: "/../images/ipad1.webp",
+        time: '',
+        price: '',
+        duration: '',
+        memory:'',
+        storage:'',
+        score: '',
+        rateCnt: '',
+        commentsCnt: 123,
+        product_comments: [{
+            id: 1,
+            content: '很好'
+        }]
+    },
+
+
+
+    gotoEvaluate: function (e) {
+        wx.navigateTo({
+            url: '../evaluate/evaluate',
+        })
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        var that = this
+        console.log('product_id')
+        console.log(options.product_id)
+        this.setData({
+            product_id : options.product_id
+        })
+          wx.cloud.callFunction({
+            name: 'get_product_info',
+            data: {
+              product_id: parseInt(options.product_id),
+            },
+            success: res => {
+              console.log(res);
+              if (res.result.errCode == 0) {
+                this.setData({
+                    name: res.result.data.product.product_name,
+                    pic_url: res.result.data.product.pic_url,
+                    time: res.result.data.product.date,
+                    price: res.result.data.product.price,
+                    duration: res.result.data.product.duration,
+                    memory:res.result.data.product.memory,
+                    storage:res.result.data.product.storage,
+                    score: res.result.data.product.product_score,
+                    rateCnt: res.result.data.product.evaluation_cnt,
+                    product_comments: res.result.data.comments
+                })
+              } 
+            },
+            fail: err => {
+              console.error('[云函数] [query_similar_words] 调用失败', err)
+              wx.showModal({
+                title: '调用失败',
+                content: '请检查云函数是否已部署',
+                showCancel: false,
+                success(res) {
+                  if (res.confirm) {
+                    console.log('用户点击确定')
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+            }
+          })
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
     },
 
     /**

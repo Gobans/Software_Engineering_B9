@@ -36,7 +36,6 @@ exports.main = async (event, context) => {
 
     console.log('操作成功')
     console.log(res.data)
-
     comments = res.data
   })
 
@@ -51,5 +50,6 @@ exports.main = async (event, context) => {
   result.data = data
   console.log('result')
   console.log(result)
+  
   return result
 }
