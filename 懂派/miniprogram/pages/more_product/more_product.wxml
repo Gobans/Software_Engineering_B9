@@ -1,0 +1,15 @@
+<!--pages/more_product/more_product.wxml-->
+<view class="title">产品评分榜</view>
+<view class="product-display" style="display:flex; flex-direction: column; justify-content: space-between;">
+    <view class="product-block" wx:for="{{hot_products}}" wx:for-item="itemName">
+        <button style="width:100%; margin:0rpx; padding:0rpx; flex-direction: row; display:flex" hover-class="none" bindtap="gotoProduct"  data-id="{{itemName.product_id}}">
+            <image class="productinfo-avatar" src="{{itemName.pic_url}}" mode="scaleToFill" ></image>
+            <view class="productinfo">
+                <view class="productinfo-name">{{itemName.product_name}}</view>
+                <view class="productinfo-price">{{itemName.memory}}+{{itemName.storage}}G</view>
+                <view class="productinfo-price">¥{{itemName.price}}</view>
+                <view class="productinfo-price">懂派评分：{{itemName.product_score}}</view>
+            </view>
+        </button>
+    </view>
+</view>

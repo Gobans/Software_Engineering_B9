@@ -10,7 +10,7 @@ exports.main = async (event, context) => {
   const db = cloud.database()
 
   // 每次至多查询多少个热词，最大值为100
-  const MAX_LIMIT = 4
+  const MAX_LIMIT = event.MAX_LIMIT
 
   // 定义一个数组接收查询结果
   var hot_products = [];

@@ -5,8 +5,8 @@
         <text class="product-name">{{name}}</text>
         <text class="product-time">{{time}}</text>
         <text class="product-price">{{price}}元</text>
-        <text class="product-price">{{duration}}小时</text>
-        <text class="product-price">{{memory}}+{{storage}}G</text>
+        <text class="product-price">待机时长：{{duration}}小时</text>
+        <text class="product-price">容量：{{memory}}+{{storage}}G</text>
     </view>
 </view>
 
