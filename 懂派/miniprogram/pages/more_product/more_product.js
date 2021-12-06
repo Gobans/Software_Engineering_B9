@@ -1,63 +1,11 @@
-// pages/index/index.js
+// pages/more_product/more_product.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        hot_products: [],
-        questions:[
-          {
-              question: "记笔记用什么平板好",
-              content: "不用平板好",
-              answers: 3,
-              status: "有"
-          },
-          {
-              question: "看视频用什么平板好",
-              content: "不看视频",
-              answers: 3,
-              status: "无"
-          },
-          {
-              question: "看书用什么平板好",
-              content: "不用平板好",
-              answers: 3,
-              status: "有"
-          },
-          {
-              question: "学习用什么平板好",
-              content: "不看视频",
-              answers: 3,
-              status: "无"
-          },
-
-      ]
-    },
-
-    // 转到搜索细节的页面
-    search_page: function (e) {
-        wx.navigateTo({
-            url: '../search/search',
-        })
-    },
-
-    gotoIndex: function (e) {
-        wx.navigateTo({
-            url: '../myAnswer/myAnswer', //需要改成index
-        })
-    },
-
-    gotoPublish: function (e) {
-        wx.navigateTo({
-            url: '../publish/publish',
-        })
-    },
-
-    gotoMine: function (e) {
-        wx.navigateTo({
-            url: '../mine/mine',
-        })
+        hot_products: []
     },
 
     gotoProduct: function(e){
@@ -71,19 +19,6 @@ Page({
 
         wx.navigateTo({
             url: '../product/product',
-        })
-    },
-
-    gotoMoreProduct: function(e){
-      wx.navigateTo({
-        url: '../more_product/more_product',
-    })
-    },
-
-    gotoAnswerSpecific: function(e){
-        wx.navigateTo({
-            //url: '../question_detail/question_detail',
-            url: '../answer_specific/answer_specific',
         })
     },
 
@@ -110,7 +45,7 @@ Page({
         wx.cloud.callFunction({
           name: 'getHotProducts',
           data: {
-            MAX_LIMIT: 4
+            MAX_LIMIT: 30
           },
           success: res => {
             console.log(res);
