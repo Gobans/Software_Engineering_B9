@@ -33,8 +33,8 @@
 
 .filter{
     margin-top: 5%;
-    margin-left: 15%;
-    width: 50%;
+    margin-left: 10%;
+    width: 80%;
     height: 10%;
     display:flex; 
     flex-direction: row;
@@ -48,7 +48,7 @@
 
 .filter-input{
     margin-left: 10%;
-    width: 60;
+    width: 25%;
     height: 100%;
     border: 3rpx solid black;
     border-radius: 6rpx;

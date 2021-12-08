@@ -6,9 +6,14 @@ Page({
      */
     data: {
         search_word: "",
-        weight: "",
-        duration: "",
-        price: ""
+        weightLow: "",
+        weightHigh: "",
+        durationLow: "",
+        durationHigh: "",
+        priceLow: "",
+        priceHigh: "",
+        thicknessLow:"",
+        thicknessHigh:""
     },
 
     //获得搜索词
@@ -19,21 +24,51 @@ Page({
     },
 
     //获得搜索的关键参数 
-    bindPriceInput:function(e){
+    bindPriceLowInput:function(e){
         this.setData({
-            price:e.detail.value
+            priceLow:e.detail.value
         })
     },
 
-    bindWeightInput:function(e){
+    bindPriceHighInput:function(e){
         this.setData({
-            weight:e.detail.value
+            priceHigh:e.detail.value
         })
     },
 
-    bindDurationInput:function(e){
+    bindWeightLowInput:function(e){
         this.setData({
-            duration:e.detail.value
+            weightLow:e.detail.value
+        })
+    },
+
+    bindWeightHighInput:function(e){
+        this.setData({
+            weightHigh:e.detail.value
+        })
+    },
+
+    bindDurationLowInput:function(e){
+        this.setData({
+            durationLow:e.detail.value
+        })
+    },
+
+    bindDurationHighInput:function(e){
+        this.setData({
+            durationHigh:e.detail.value
+        })
+    },
+
+    bindThicknessLowInput:function(e){
+        this.setData({
+            thicknessLow:e.detail.value
+        })
+    },
+
+    bindThicknessHighInput:function(e){
+        this.setData({
+            thicknessHigh:e.detail.value
         })
     },
 
