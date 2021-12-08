@@ -5,16 +5,20 @@
     <image class="search_img" src="/../images/search.png" bindtap="search"></image>
 </view>
 
+<view class="more" tyle="display:flex; flex-direction: row; justify-content: space-between;">
+    <text class="more-txt" bindtap="gotoMoreProduct">更多</text>
+</view>
 
 <view class="product-display" style="display:flex; flex-direction: row; justify-content: space-between;">
-    <view class="product-block" wx:for="{{hot_products}}" wx:for-item="itemName" bindtap="hotquestion">
-        <button style="width:100%; margin:0rpx; padding:0rpx; flex-direction: column;" bindtap="getProductInfo"
-            hover-class="none">
-            <image class="productinfo-avatar" src="{{itemName.imgUrl}}" mode="scaleToFill"></image>
-            <view class="productinfo-name">{{itemName.name}}</view>
+    <view class="product-block" wx:for="{{hot_products}}" wx:for-item="itemName">
+        <button style="width:100%; margin:0rpx; padding:0rpx; flex-direction: column;" 
+            hover-class="none" bindtap="gotoProduct" data-id="{{itemName.product_id}}">
+            <image class="productinfo-avatar" src="{{itemName.pic_url}}" mode="scaleToFill" ></image>
+            <view class="productinfo-name">{{itemName.product_name}}</view>
         </button>
     </view>
 </view>
+
 
 
 <view class="question" wx:for="{{questions}}" wx:for-item="q" >
