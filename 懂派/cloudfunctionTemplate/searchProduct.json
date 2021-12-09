@@ -1,0 +1,16 @@
+[
+  {
+    "name": "searchProduct",
+    "value": {
+      "MAX_LIMIT": 10,
+      "weightLow": 0,
+      "weightHigh": 1000,
+      "durationLow": 0,
+      "durationHigh": 20,
+      "priceLow": 0,
+      "priceHigh": 10000,
+      "thicknessLow": 0,
+      "thicknessHigh": 1000
+    }
+  }
+]
