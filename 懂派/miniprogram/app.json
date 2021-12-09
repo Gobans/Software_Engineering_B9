@@ -8,7 +8,16 @@
         "pages/answer_specific/answer_specific",
         "pages/mine/mine",
         "pages/myAnswer/myAnswer",
+<<<<<<< Updated upstream
         "pages/myQuestion/myQuestion"
+=======
+        "pages/myQuestion/myQuestion",
+        "pages/search_result/search_result",
+        "pages/publish_question/publish_question",
+        "pages/question_detail/question_detail",
+        "pages/more_product/more_product",
+        "pages/answer_change/answer_change"
+>>>>>>> Stashed changes
     ],
     "window": {
         "backgroundColor": "#F6F6F6",
