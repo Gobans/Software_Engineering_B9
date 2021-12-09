@@ -6,14 +6,14 @@ Page({
      */
     data: {
         search_word: "",
-        weightLow: "",
-        weightHigh: "",
-        durationLow: "",
-        durationHigh: "",
-        priceLow: "",
-        priceHigh: "",
-        thicknessLow:"",
-        thicknessHigh:""
+        weightLow: 0,
+        weightHigh: 1000,
+        durationLow: 0,
+        durationHigh: 100,
+        priceLow: 0,
+        priceHigh: 50000,
+        thicknessLow:0,
+        thicknessHigh:30000
     },
 
     //获得搜索词

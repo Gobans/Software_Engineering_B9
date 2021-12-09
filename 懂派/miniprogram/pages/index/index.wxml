@@ -20,7 +20,6 @@
 </view>
 
 
-
 <view class="question" wx:for="{{questions}}" wx:for-item="q" >
   <button style="width:100%; height:80%; margin:0rpx; padding:0rpx;" bindtap="getDetail"  hover-class="none">
     <view class="questioninfo">
