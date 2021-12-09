@@ -12,12 +12,15 @@ exports.main = async (event, context) => {
     await db.collection('answer').add({
       // data 字段表示需新增的 JSON 数据
       data: {
-        ask_user_id: event.ask_user_id,
-        ans_user_id: event.user_id,
+        ans_user_id: event.ans_user_id,
+        nickName: event.nickName,
+        avatarUrl:event.avatarUrl,
         is_accept: event.is_accept,
         like_cnt: 0,
         ans_time: event.ans_time,
         ans_content: event.ans_content,
+        question_id : event.question_id,
+        status: true,
       }
     }).then(res=>{
       console.log(res) // 这里会看 产生的id
