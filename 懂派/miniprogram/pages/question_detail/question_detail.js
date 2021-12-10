@@ -15,7 +15,8 @@ Page({
     question_id:"c462c81061b097df0130828812d93500",
     question_content:"记笔记用什么平板好",
     answer_nums:3,
-    answers:[]
+    answers:[],
+    question:[],
     },
     change_answer:function(e) {
       if(e.currentTarget.dataset.ans_user_id != this.data.openid){
@@ -38,8 +39,11 @@ Page({
       wx.showLoading({
         title: '',
       });
-        let question_id = e.currentTarget.dataset.question_id;
-        
+        let ans_id = e.currentTarget.dataset.ans_id;
+        console.log(ans_id)
+        wx.navigateTo({
+          url: '../answer_change/answer_change?ans_id=' + ans_id,
+        })
     }},
     
     del_answer: function(e) {
@@ -160,6 +164,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+      this.setData({
+        question_id: options.question_id
+      })
+
       if (!wx.cloud) {
         wx.showModal({
           title: '初始化失败',

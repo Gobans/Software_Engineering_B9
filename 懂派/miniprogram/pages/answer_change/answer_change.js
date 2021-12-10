@@ -4,45 +4,94 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
+    ans_id: "",
+    answers: [],
   },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  onLoad() {
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
-    }
-  },
-  getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+
+  getAnswers: function() {
+    var that = this
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'answerFunctions',
+      data: {
+        type:"getChangeAnswer",
+        ans_id: that.data.ans_id
+      },
+      success: res => {
+        console.log(res);
+        if (res.result.errCode == 0) {
+          that.setData({
+            answers: res.result.data.answers
+          })
+          console.log(that.data.answers)
+        } else {
+          wx.showModal({
+            title: '抱歉，出错了呢~',
+            content: res.result.errMsg,
+            confirmText: "我知道了",
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
+      },
+      fail: err => {
+        console.error('[云函数] [get_myAnswers] 调用失败', err)
+        wx.showModal({
+          title: '调用失败',
+          content: '请检查云函数是否已部署',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
         })
       }
     })
   },
-  getUserInfo(e) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+
+  formSubmit(e) {
+    wx.showLoading({
+      title: '',
+    });
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    console.log(this.data.ans_id)
+    wx.cloud.callFunction({
+      name: 'answerFunctions',
+      config: {
+        env: this.data.envId
+      },
+      data: {
+        type: "updateAnswer",
+        ans_id: this.data.ans_id,
+        ans_content: e.detail.value.content,
+        ans_time: new Date().toLocaleString(),
+      }
+    }).then((e) => {
+      console.log(e);
+      wx.hideLoading();
+      wx.redirectTo({
+        url: '../question_detail/question_detail',
+        success: (res) => {},
+        fail: (res) => {},
+        complete: (res) => {},
+      })
     })
+},
+  
+  onLoad:function(option) {
+    console.log(option.ans_id) 
+    this.setData({
+      ans_id : option.ans_id
+    })
+    this.getAnswers()
   }
 })

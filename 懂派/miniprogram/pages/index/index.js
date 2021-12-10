@@ -9,6 +9,7 @@ Page({
     questions: [{
         question: "记笔记用什么平板好",
         content: "不用平板好",
+        _id: "fa24ce1a6199f5ea07f577912a9a2859",
         answers: 3,
         status: "有"
       },
@@ -67,8 +68,9 @@ Page({
     },
 
     gotoQuestionDetail: function(e){
+      let question_id = e.currentTarget.dataset.question_id
       wx.navigateTo({
-        url: '../question_detail/question_detail',
+        url: '../question_detail/question_detail?question_id=' + question_id,
     })
     },
 
