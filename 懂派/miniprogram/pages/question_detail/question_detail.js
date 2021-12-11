@@ -18,6 +18,71 @@ Page({
     answers:[],
     question:[],
     },
+    like:function (e) {
+      let ans_id = e.currentTarget.dataset.ans_id
+      let like_cnt = e.currentTarget.dataset.like_cnt
+      console.log(like_cnt)
+      wx.cloud.callFunction({
+        name: 'likeFunctions',
+        config: {
+          env: this.data.envId
+        },
+        data: {
+          type: "checkLike",
+          ans_id: ans_id,
+          user_id: this.data.openid
+        }
+      }).then((e) => {
+        console.log(e);
+        if(e.result.is_like){
+          wx.cloud.callFunction({
+            name: 'likeFunctions',
+            config: {
+              env: this.data.envId
+            },
+            data: {
+              type: "deleteLike", 
+              ans_id: ans_id,
+              user_id: this.data.openid,
+              like_cnt: like_cnt
+            }
+          }).then( 
+            res =>{
+            console.log(res)
+            wx.redirectTo({
+            url: 'question_detail',
+            success: (res) => {},
+            fail: (res) => {},
+            complete: (res) => {},
+          })
+        })
+        }else{
+          wx.cloud.callFunction({
+            name: 'likeFunctions',
+            config: {
+              env: this.data.envId
+            },
+            data: {
+              type: "createLike",
+              ans_id: ans_id,
+              user_id: this.data.openid,
+              like_cnt: like_cnt
+            }
+          }).then( 
+            res =>{
+            console.log(res)
+            wx.redirectTo({
+            url: 'question_detail',
+            success: (res) => {},
+            fail: (res) => {},
+            complete: (res) => {},
+          })
+        })
+        }
+       
+      })
+    },
+
     change_answer:function(e) {
       if(e.currentTarget.dataset.ans_user_id != this.data.openid){
         wx.showModal({
@@ -32,7 +97,7 @@ Page({
             } else if (res.cancel) {
               console.log('用户点击取消')
               return
-            }
+            }  
           }
         })
       }else{
@@ -119,12 +184,10 @@ Page({
         question_id: that.data.question_id
       },
       success: res => {
-        console.log(res);
         if (res.result.errCode == 0) {
           that.setData({
             answers: res.result.data.answers
           })
-          console.log(that.data.answers)
         } else {
           wx.showModal({
             title: '抱歉，出错了呢~',
@@ -164,9 +227,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-      this.setData({
-        question_id: options.question_id
-      })
+      // this.setData({
+      //   question_id: options.question_id
+      // })
 
       if (!wx.cloud) {
         wx.showModal({
