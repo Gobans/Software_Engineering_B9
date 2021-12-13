@@ -68,9 +68,12 @@ Page({
     },
 
     gotoQuestionDetail: function(e){
-      let question_id = e.currentTarget.dataset.question_id
+
+      console.log(e)
+      let answer_id = e.currentTarget.dataset.question_id
       wx.navigateTo({
-        url: '../question_detail/question_detail?question_id=' + question_id,
+        url: '../question_detail/question_detail?question_id=' + answer_id,
+
     })
     },
 

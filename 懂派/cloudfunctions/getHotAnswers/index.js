@@ -25,6 +25,7 @@ exports.main = async (event, context) => {
       as: 'question_info',
     })
     .project({
+      _id:1,
         answer_content: 1,
         like_cnt: 1,
         question_info: 1
