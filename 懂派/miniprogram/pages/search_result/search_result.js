@@ -6,7 +6,7 @@ Page({
    */
   data: {
     hot_products: [],
-    param:{},
+    param: {},
     questions: [{
         question: "记笔记用什么平板好",
         content: "不用平板好",
@@ -131,7 +131,9 @@ Page({
     var dat = JSON.parse(options.dat)
     let param = that.data.param
     param = dat
-    that.setData({param})
+    that.setData({
+      param
+    })
     console.log(that.data.param)
     //获得产品的搜索结果
     wx.cloud.callFunction({
@@ -149,12 +151,42 @@ Page({
       },
       success: res => {
         console.log(res);
-          this.setData({
-            hot_products: res.result.data.hot_products
-          })
+        this.setData({
+          hot_products: res.result.data.hot_products
+        })
       },
       fail: err => {
         console.error('[云函数] [query_similar_words] 调用失败', err)
+        wx.showModal({
+          title: '调用失败',
+          content: '请检查云函数是否已部署',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    })
+
+    // 调用云函数获得相关问题
+    wx.cloud.callFunction({
+      name: 'searchQuestion',
+      data: {
+        search_word:that.data.param.search_word
+      },
+      success: res => {
+        console.log(res.result);
+        that.setData({
+          questions: res.result.data.relate_question
+        })
+        console.log(res.result.data.relate_question)
+      },
+      fail: err => {
+        console.error('[云函数] [getHotAnswers] 调用失败', err)
         wx.showModal({
           title: '调用失败',
           content: '请检查云函数是否已部署',
@@ -183,80 +215,8 @@ Page({
    */
   onShow: function () {
     var that = this
-    // 调用云函数获取热门产品
 
-    wx.cloud.callFunction({
-      name: 'getHotProducts',
-      data: {
-        MAX_LIMIT: 4
-      },
-      success: res => {
-        console.log(res);
-        if (res.result.errCode == 0) {
-          that.setData({
-            hot_products: res.result.data.hot_products
-          })
-        } else {
-          wx.showModal({
-            title: '抱歉，出错了呢~',
-            content: res.result.errMsg,
-            confirmText: "我知道了",
-            showCancel: false,
-            success(res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
-          })
-        }
-      },
-      fail: err => {
-        console.error('[云函数] [getHotProducts] 调用失败', err)
-        wx.showModal({
-          title: '调用失败',
-          content: '请检查云函数是否已部署',
-          showCancel: false,
-          success(res) {
-            if (res.confirm) {
-              console.log('用户点击确定')
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
-        })
-      }
-    })
 
-    // 调用云函数获得热门问题
-    wx.cloud.callFunction({
-      name: 'getHotAnswers',
-      data: {},
-      success: res => {
-        console.log(res);
-        that.setData({
-          questions: res.result.list
-        })
-        console.log('ans:')
-        console.log(res)
-      },
-      fail: err => {
-        console.error('[云函数] [getHotAnswers] 调用失败', err)
-        wx.showModal({
-          title: '调用失败',
-          content: '请检查云函数是否已部署',
-          showCancel: false,
-          success(res) {
-            if (res.confirm) {
-              console.log('用户点击确定')
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
-        })
-      }
-    })
   },
 
   /**
