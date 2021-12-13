@@ -59,6 +59,39 @@ Page({
     })
   },
 
+    gotoAnswerSpecific: function(e){
+        wx.navigateTo({
+            //url: '../question_detail/question_detail',
+            url: '../answer_specific/answer_specific',
+        })
+    },
+
+    gotoQuestionDetail: function(e){
+      console.log(e)
+      let answer_id = e.currentTarget.dataset.question_id
+      wx.navigateTo({
+        url: '../question_detail/question_detail?question_id=' + answer_id,
+    })
+    },
+
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+   
   gotoProduct: function (e) {
 
     var id = e.currentTarget.dataset.id

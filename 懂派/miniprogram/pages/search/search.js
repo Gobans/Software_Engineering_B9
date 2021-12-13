@@ -16,6 +16,16 @@ Page({
         thicknessHigh:30000
     },
 
+    //进入搜索结果页
+    search:function(e){
+        var that = this
+        var dat = that.data
+        console.log(dat)
+        wx.navigateTo({
+          url: '../search_result/search_result?dat=' + JSON.stringify(dat),
+        })
+    },
+
     //获得搜索词
     bindKeyInput:function(e){
         this.setData({
@@ -26,49 +36,49 @@ Page({
     //获得搜索的关键参数 
     bindPriceLowInput:function(e){
         this.setData({
-            priceLow:e.detail.value
+            priceLow:parseInt(e.detail.value)
         })
     },
 
     bindPriceHighInput:function(e){
         this.setData({
-            priceHigh:e.detail.value
+            priceHigh:parseInt(e.detail.value)
         })
     },
 
     bindWeightLowInput:function(e){
         this.setData({
-            weightLow:e.detail.value
+            weightLow:parseFloat(e.detail.value)
         })
     },
 
     bindWeightHighInput:function(e){
         this.setData({
-            weightHigh:e.detail.value
+            weightHigh:parseFloat(e.detail.value)
         })
     },
 
     bindDurationLowInput:function(e){
         this.setData({
-            durationLow:e.detail.value
+            durationLow:parseFloat(e.detail.value)
         })
     },
 
     bindDurationHighInput:function(e){
         this.setData({
-            durationHigh:e.detail.value
+            durationHigh:parseFloat(e.detail.value)
         })
     },
 
     bindThicknessLowInput:function(e){
         this.setData({
-            thicknessLow:e.detail.value
+            thicknessLow:parseFloat(e.detail.value)
         })
     },
 
     bindThicknessHighInput:function(e){
         this.setData({
-            thicknessHigh:e.detail.value
+            thicknessHigh:parseFloat(e.detail.value)
         })
     },
 

@@ -1,0 +1,48 @@
+/* pages/more_product/more_product.wxss */
+
+.title{
+    margin-top: 5%;
+    margin-bottom: 0%;
+    height: 20%;
+    font-size: 42rpx;
+    text-align: center;
+}
+
+.product-display {
+    width: 90%;
+    height: 90%rpx;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.product-block {
+    margin-left: 5%;
+    width: 95%;
+    height: 80 rpx;
+}
+
+.product-content {
+    height: 80%;
+}
+
+.productinfo-avatar {
+    height: 160rpx;
+    width: 160rpx;
+    border-radius: 50%;
+}
+
+.productinfo-name {
+    margin-top: 10rpx;
+    font-size: 28rpx;
+    text-align: center;
+}
+
+.productinfo-price{
+    font-size: 22rpx;
+    text-align:start;
+}
+
+.productinfo{
+    flex-direction: column;
+    margin-left: 10%;
+}
