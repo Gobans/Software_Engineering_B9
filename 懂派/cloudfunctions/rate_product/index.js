@@ -5,6 +5,7 @@ cloud.init()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+    const wxContext = cloud.getWXContext()
     if (event.product_id == undefined) {
 
         // 返回执行结果
@@ -25,7 +26,7 @@ exports.main = async (event, context) => {
     var product;
     await db.collection('product')
         .where({
-            product_id: event.product_id
+            product_id: parseInt(event.product_id) 
         })
         .get()
         .then(res => {
@@ -34,29 +35,15 @@ exports.main = async (event, context) => {
             product = res.data[0]
         })
 
-    //判断产品是否存在
-    if (product == undefined) {
-
-        var result = {}
-        result.errCode = 3
-        result.errMsg = '不存在，更新失败'
-
-        var data = {}
-        data.relation_id = event.relation_id
-
-        result.data = data
-
-        return result
-    }
 
     /** 为该产品修改评分 start */
     await db.collection('product')
         .where({
-            product_id: product.product_id
+            product_id: parseInt(product.product_id)
         })
         .update({
             data: {
-                product_score: (product.product_score * product.evaluation_cnt + event.score) / (product.evaluation_cnt + 1),
+                product_score: (product.product_score * product.evaluation_cnt + event.score*2) / (product.evaluation_cnt + 1),
                 evaluation_cnt: product.evaluation_cnt + 1
             }
         })
@@ -71,7 +58,7 @@ exports.main = async (event, context) => {
     to_add_data = {
 
         //产品id
-        product_id: event.product_id,
+        product_id: parseInt(event.product_id), 
 
         //评价者的id
         user_id: wxContext.OPENID,
@@ -98,11 +85,8 @@ exports.main = async (event, context) => {
             console.log(res)
 
             add_result = res._id
-
         })
     /** 增加evaluation记录 end */
-
-
 
     var result = {}
 

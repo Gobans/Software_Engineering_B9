@@ -33,7 +33,6 @@ exports.main = async (event, context) => {
   .orderBy('evaluation_date','desc')
   .get()
   .then(res => {
-
     console.log('操作成功')
     console.log(res.data)
     comments = res.data
