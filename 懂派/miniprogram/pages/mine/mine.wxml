@@ -6,7 +6,7 @@
       <image class="userinfo-avatar" src="{{avatarUrl}}" mode="scaleToFill"></image>
       <view class="userinfo-else">
         <view class="userinfo-nickname">{{nickName}}</view>
-        <text space="ensp" class="userinfo-exp-coin" decode="{{true}}">等级:{{level}}&ensp;&ensp;金币:{{coin}}</text>
+        <text space="ensp" class="userinfo-exp-coin" decode="{{true}}">等级:{{exp}}&ensp;&ensp;金币:{{coin}}</text>
       </view>
     </view>
   </button>

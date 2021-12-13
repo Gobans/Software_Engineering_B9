@@ -1,16 +1,21 @@
-// 云函数入口文件
-const cloud = require('wx-server-sdk')
-
-cloud.init()
+const createAnswer = require('./createAnswer/index');
+const deleteAnswer = require('./deleteAnswer/index');
+const getAnswer = require('./getAnswer/index');
+const getChangeAnswer = require('./getChangeAnswer/index');
+const updateAnswer = require('./updateAnswer/index');
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
-
-  return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
+  switch (event.type) {
+    case 'createAnswer':
+      return await createAnswer.main(event, context);
+    case 'deleteAnswer':
+      return await deleteAnswer.main(event, context);
+    case 'getAnswer':
+      return await getAnswer.main(event, context);
+    case 'getChangeAnswer':
+      return await getChangeAnswer.main(event, context);
+    case 'updateAnswer':
+      return await updateAnswer.main(event, context);
   }
-}
+};

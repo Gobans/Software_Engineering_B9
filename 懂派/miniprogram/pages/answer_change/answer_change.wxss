@@ -1,0 +1,69 @@
+.answers{
+  width: 90%;
+  height: 500rpx;
+  margin-top: 30rpx;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 4rpx solid #437dd4;
+  border-radius: 10rpx;
+  background-color: white;
+  overflow:auto;
+}
+
+.answer_nums{
+  width: 100%;
+  height: 80rpx;
+  border-radius: 10rpx;
+  background-color: white;
+  font-size: 30rpx;
+  font-weight: bold;
+  display:flex;
+  align-items:center;
+  margin-left:20rpx;
+}
+
+.answer_contents{
+  width: 100%;
+  height: 300rpx;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  background-color: white;
+}
+
+.userinfo{
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+}
+
+.userinfo-avatar{
+  height:70rpx;
+  width: 70rpx;
+  margin-left: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname{
+  height: 100%;
+  width: 250rpx;
+  color:black;
+  font-size: 30rpx;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+}
+
+.answer_content{
+  width: 100%;
+  height: 50%;
+  color:black;
+  font-size: 32rpx;
+  font-weight: normal;
+  margin-left: 20rpx;
+  margin-bottom: 10rpx;
+}

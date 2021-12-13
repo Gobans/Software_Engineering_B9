@@ -8,24 +8,26 @@ const db = cloud.database();
 
 // 创建集合云函数入口函数
 exports.main = async (event, context) => {
-  try {
-    await db.collection('like').add({
-      // data 字段表示需新增的 JSON 数据
-      data: {
-        user_id: event.user_id,
-        ans_id: event.ans_id
-      }
-    }).then(res=>{
-      console.log(res) // 这里会看 产生的id
-    })
-    return {
-      success: true
-    };
-  } catch (e) {
-    // 这里catch到的是该collection已经存在，从业务逻辑上来说是运行成功的，所以catch返回success给前端，避免工具在前端抛出异常
-    return {
-      success: true,
-      data: 'create collection success'
-    };
-  }
+  let result ={}
+  
+  await db.collection('like').add({
+    // data 字段表示需新增的 JSON 数据
+    data: {
+      user_id: event.user_id,
+      ans_id: event.ans_id
+    }
+  })
+
+  await db.collection('answer').where({
+      _id: event.ans_id
+  }).update({
+    data:{
+      like_cnt : event.like_cnt +1
+    }
+  })
+
+  return {
+    success: true
+  };
+  
 };
