@@ -23,7 +23,6 @@
 </view>
 
 <view class="comments">
-    <view class="comments-title">评价 {{commentsCnt}} 条</view>
     <view class="comments-content" wx:for="{{product_comments}}" wx:for-item="item">
         <view class="comment-detail">{{item.evaluation_content}}</view>
     </view>
