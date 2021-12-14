@@ -5,6 +5,7 @@
         <text class="product-name">{{name}}</text>
         <text class="product-time">{{time}}</text>
         <text class="product-price">{{price}}元</text>
+        <text class="product-price">处理器：{{processor}}</text>
         <text class="product-price">待机时长：{{duration}}小时</text>
         <text class="product-price">容量：{{memory}}+{{storage}}G</text>
     </view>
@@ -23,6 +24,7 @@
 </view>
 
 <view class="comments">
+<view class="comments-title">懂派短评</view>
     <view class="comments-content" wx:for="{{product_comments}}" wx:for-item="item">
         <view class="comment-detail">{{item.evaluation_content}}</view>
     </view>
