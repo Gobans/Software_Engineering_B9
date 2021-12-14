@@ -219,12 +219,5 @@
     font-size: 5 rpx;
     position: fixed;
     right: 0;
-    margin-right: 30rpx;
-}
-
-.res-txt{
-  font-size: 5 rpx;
-  position: fixed;
-  left: 0;
-  margin-left: 30rpx;
+    margin-right: 24rpx;
 }

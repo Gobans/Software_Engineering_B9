@@ -15,6 +15,7 @@ Page({
         storage:'',
         score: '',
         rateCnt: '',
+        processor:'',
         commentsCnt: 123,
         product_comments: [{
             id: 1,
@@ -70,7 +71,8 @@ Page({
                   storage:res.result.data.product.storage,
                   score: res.result.data.product.product_score.toFixed(2),
                   rateCnt: res.result.data.product.evaluation_cnt,
-                  product_comments: res.result.data.comments
+                  product_comments: res.result.data.comments,
+                  processor:res.result.data.product.processor
               })
               console.log(this.data)
             } 

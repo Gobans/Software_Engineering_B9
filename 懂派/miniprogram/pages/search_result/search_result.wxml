@@ -6,8 +6,7 @@
 </view>
 
 <view class="more" tyle="display:flex; flex-direction: row; justify-content: space-between;">
-    <text class="res-txt" bindtap="gotoMoreProduct">搜索结果</text>
-    <text class="more-txt" bindtap="gotoMoreProduct">更多</text>
+    <text class="more-txt" bindtap="gotoMoreProduct">更多搜索结果</text>
 </view>
 
 <view class="product-display" style="display:flex; flex-direction: row; justify-content: space-between;">
