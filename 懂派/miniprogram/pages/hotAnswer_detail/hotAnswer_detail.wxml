@@ -3,7 +3,6 @@
 <view class="question" bindtap="gotoQuestionDetail" data-question_id="{{question_id}}">
     <view class ="question_contents" >
         <view class="question_title">{{question_title}}</view>
-        <view class="answer_nums">回答数{{answer_nums}}</view>
     </view>
 </view>
 

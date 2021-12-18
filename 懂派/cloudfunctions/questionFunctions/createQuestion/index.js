@@ -17,6 +17,8 @@ exports.main = async (event, context) => {
         question_title: event.question_title,
         pic_url: event.pic_url,
         question_time: event.question_time,
+        avatarUrl: event.avatarUrl,
+        nickName: event.nickName
       }
     }).then(res=>{
       console.log(res) // 这里会看 产生的id

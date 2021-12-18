@@ -21,6 +21,17 @@ Page({
   onLoad: function(e) {
     if(app.globalData.logged == undefined){
       console.log("没有logged属性")
+      wx.showModal({
+        title: '温馨提示',
+        content: "没有登录了，需要登录。",
+        confirmText: "我知道了",
+        showCancel: false,
+        success(res) {
+          wx.redirectTo({
+            url: '../mine/mine',
+          })
+        }
+      })
     }
     else if(app.globalData.logged){      
       this.setData({
@@ -63,6 +74,8 @@ Page({
         question_title:  e.detail.value.title,
         pic_url: this.data.imgSrc,
         question_time: new Date().toLocaleString(),
+        avatarUrl: this.data.avatarUrl,
+        nickName: this.data.nickName
       }
     }).then((e) => {
       console.log(e);
