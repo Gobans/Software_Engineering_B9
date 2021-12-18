@@ -1,0 +1,27 @@
+<!--pages/question_detail/question_detail.wxml-->
+
+<view class="question">
+    <view class="question_content">{{question_content}}</view>
+</view>
+
+<view class="answers">
+    <view class="answer_nums">回答数{{answer_nums}}</view>
+    <view class="answer_contents" wx:for="{{answer_contents}}">
+        <view class="userinfo">
+            <image class="userinfo-avatar" src="{{item.avatarUrl}}" mode="scaleToFill"></image>
+            <view class="userinfo-nickname">{{item.nickName}}</view>
+        </view>
+        <view class="answer_content">{{item.answer_content}}</view>
+        <view class="answer_status">
+            <view class="like_cnt">{{item.like_cnt}}赞同</view>
+            <view class="is_accept" hidden="{{item.is_accept?false:true}}">已采纳</view>
+            <view class="is_accept" hidden="{{item.is_accept}}"></view>
+            <button class="del_button" size="mini" wx:if="{{item.is_admin}}" bindtap="del_answer" style="width:30%; height:100%; font-size: 32rpx; display:flex; justify-content:right;">删除回答</button>
+        </view>
+    </view>
+</view>
+
+<view class="add_button">
+    <button class="add_answer" size="mini" bindtap="add_answer" style="width:30%; height:100%; font-size: 36rpx; display:flex; justify-content:right;">添加回答</button>
+</view>
+

@@ -1,0 +1,19 @@
+<view class="question">
+    <view class="question_content" bindtap="gotoQuestionDetail">{{question_content}}</view>
+</view>
+
+<view class="answer-container"> 
+  <view class="user-info">
+      <view class="user-image"></view>
+      <view class="user-nickname">昵称</view>
+      <view class="user-grade">等级</view>
+    </view>
+  <view class="answer-content">不用平板最好</view>
+  <view class="answer-date">编辑于 2021-10-26</view>
+  <view class="answer-functionContainer">
+    <view class="like">点赞</view>
+    <view class="adopt">采纳</view>
+  </view>
+
+  
+</view>

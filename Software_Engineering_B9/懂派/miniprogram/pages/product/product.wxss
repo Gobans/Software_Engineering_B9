@@ -1,0 +1,124 @@
+/* pages/product/product.wxss */
+
+.top-container{
+    height: 350rpx;
+    flex-direction: row;
+    justify-content:start;
+    width: 100%;
+    display:flex;
+}
+
+.product-img{
+    height: 90%;
+    width: 30%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.product-info{
+    margin-top: 10%;
+    margin-right: 5%;
+    margin-left: 10%;
+    height: 90%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.product-name{
+    font-size: 36 rpx;
+}
+
+.product-time{
+    font-size: 30rpx;
+    margin-top: 10rpx;
+}
+
+.product-price{
+    font-size: 30rpx;
+    margin-top: 10rpx;
+}
+
+.score-board{
+    height: 25%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10%;
+    flex-direction: column;
+    background-color: rgb(236, 230, 230);
+}
+
+.score-board-top{
+    height: 10%;
+    width: 100%;
+    padding: 4rpx;
+    flex-direction: row;
+    display: flex;
+}
+
+.title{
+    font-size: 24rpx;
+    width: 70%;
+    height: 100%;
+    text-align: start;
+}
+
+.navi-eva{
+    width: 30%;
+    height: 100%;
+}
+
+.eva-txt{
+    font-size: 24rpx;
+    margin-left: 5%;
+}
+
+.navi_img{
+    height: 20rpx;
+    width: 20rpx;
+    margin-left: 5 rpx;
+}
+
+.score{
+    height: 70%;
+    align-content: center;
+    text-align: center;
+    font-size: 48rpx;
+    width: 80%;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.rate-cnt{
+    height: 10%;
+    margin-top: 5%;
+    align-content: center;
+    font-size: 26rpx;
+}
+
+.comments{
+    height: 35%;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    flex-direction: column;
+}
+
+.comments-title{
+    height: 10%;
+    font-size: 26rpx;
+}
+
+.comments-content{
+    width: 100%;
+}
+
+.comment-detail{
+    margin-top: 5%;
+    height: 120rpx;
+    width: 100%;
+}
