@@ -2,7 +2,7 @@
 
 <view class="area" style="display:flex; flex-direction: row; justify-content: space-between; align-items: center;" bindtap="search_page">
     <input class="search_input" placeholder="输入词语.."  value="{{search_word}}"></input>
-    <image class="search_img" src="/../images/search.png" bindtap="search"></image>
+    <image class="search_img" src="cloud://cloud1-5gum0luvfc692c31.636c-cloud1-5gum0luvfc692c31-1307714903/tab_bar/search.png" bindtap="search"></image>
 </view>
 
 <view class="more" tyle="display:flex; flex-direction: row; justify-content: space-between;">
