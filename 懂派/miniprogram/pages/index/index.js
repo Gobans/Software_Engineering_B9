@@ -67,13 +67,14 @@ Page({
         })
     },
 
-    gotoQuestionDetail: function(e){
-
+    gotohotAnswerDetail: function(e){
       console.log(e)
-      let answer_id = e.currentTarget.dataset.question_id
+      let answer_id = e.currentTarget.dataset.answer_id
+      let question_id = e.currentTarget.dataset.question_id
+      let question_title = e.currentTarget.dataset.question_title
+      let question_content = e.currentTarget.dataset.question_content
       wx.navigateTo({
-        url: '../question_detail/question_detail?question_id=' + answer_id,
-
+        url: '../hotAnswer_detail/hotAnswer_detail?question_id=' + question_id + '&answer_id=' + answer_id + '&question_title=' + question_title + '&question_content=' + question_content
     })
     },
 

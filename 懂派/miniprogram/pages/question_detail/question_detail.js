@@ -1,10 +1,6 @@
 // pages/question_detail/question_detail.js
 const app = getApp()
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
     nickName: "未名",
     avatarUrl: "/images/user-unlogin.png",
@@ -12,15 +8,19 @@ Page({
     exp: "--",
     coin: "--",
     is_admin: false,
-    question_id:"c462c81061b097df0130828812d93500",
-    question_content:"记笔记用什么平板好",
+    question_id:"--",
+    answer_id:"--",
     answer_nums:3,
     answers:[],
     question:[],
+    previous:"question_detail"
     },
     like:function (e) {
-      let ans_id = e.currentTarget.dataset.ans_id
+      let ans_id = e.currentTarget.dataset.answer_id
       let like_cnt = e.currentTarget.dataset.like_cnt
+      let question_id = this.data.question_id
+      let question_title = this.data.question_title
+      let question_content = this.data.question_content
       console.log(like_cnt)
       wx.cloud.callFunction({
         name: 'likeFunctions',
@@ -50,11 +50,8 @@ Page({
             res =>{
             console.log(res)
             wx.redirectTo({
-            url: 'question_detail',
-            success: (res) => {},
-            fail: (res) => {},
-            complete: (res) => {},
-          })
+              url: '../question_detail/question_detail?question_id=' + question_id  + '&question_title=' + question_title + '&question_content=' + question_content + "&previous=question_detail"
+            })
         })
         }else{
           wx.cloud.callFunction({
@@ -71,12 +68,9 @@ Page({
           }).then( 
             res =>{
             console.log(res)
-            wx.redirectTo({
-            url: 'question_detail',
-            success: (res) => {},
-            fail: (res) => {},
-            complete: (res) => {},
-          })
+              wx.redirectTo({
+                url: '../question_detail/question_detail?question_id=' + question_id  + '&question_title=' + question_title + '&question_content=' + question_content + "&previous=question_detail"
+              })
         })
         }
        
@@ -104,10 +98,12 @@ Page({
       wx.showLoading({
         title: '',
       });
-        let ans_id = e.currentTarget.dataset.ans_id;
-        console.log(ans_id)
-        wx.navigateTo({
-          url: '../answer_change/answer_change?ans_id=' + ans_id,
+      let answer_id = e.currentTarget.dataset.answer_id
+      let question_id = this.data.question_id
+      let question_title = this.data.question_title
+      let question_content = this.data.question_content
+        wx.redirectTo({
+          url: '../answer_change/answer_change?question_id=' + question_id + '&answer_id=' + answer_id + '&question_title=' + question_title + '&question_content=' + question_content + "&previous=question_detail"
         })
     }},
     
@@ -144,12 +140,41 @@ Page({
       }).then((e) => {
         console.log(e);
         wx.hideLoading();
-        wx.redirectTo({url: 'question_detail'})
+        let question_id = this.data.question_id
+        let question_title = this.data.question_title
+        let question_content = this.data.question_content
+          wx.redirectTo({
+            url: '../question_detail/question_detail?question_id=' + question_id  + '&question_title=' + question_title + '&question_content=' + question_content + "&previous=question_detail"
+          })
       })
     }},
     //这个函数用于管理员删除回答 
 
     formSubmit(e) {
+      var that = this
+      if(app.globalData.logged == undefined){
+        
+        wx.showModal({
+          title: '提示',
+          content: "需要登录",
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              wx.redirectTo({
+                url: '../mine/mine',
+                success: (res) => {},
+                fail: (res) => {},
+                complete: (res) => {},
+              })
+              return
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+              return
+            }
+          }
+        })
+      }
+      else{
       wx.showLoading({
         title: '',
       });
@@ -166,13 +191,16 @@ Page({
           avatarUrl:this.data.avatarUrl,
           ans_content: e.detail.value.content,
           ans_time: new Date().toLocaleString(),
-          question_id:this.data.question_id
+          question_id:this.data.question_id,
+          question_title:this.data.question_title,
+          question_content:this.data.question_content,
         }
       }).then((e) => {
         console.log(e);
         wx.hideLoading();
-        wx.redirectTo({url: 'question_detail'})
+        wx.redirectTo({url: '../question_detail/question_detail?question_id='+ this.data.question_id})
       })
+    }
   },
   getAnswers: function() {
     var that = this
@@ -221,15 +249,65 @@ Page({
       }
     })
   },
+  getQuestion: function() {
+    var that = this
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'questionFunctions',
+      data: {
+        type:"getQuestion",
+        question_id: that.data.question_id
+      },
+      success: res => {
+        if (res.result.errCode == 0) {
+          that.setData({
+            question: res.result.data.question
+          })
+          console.log(res.result.data.question)
+        } else {
+          wx.showModal({
+            title: '抱歉，出错了呢~',
+            content: res.result.errMsg,
+            confirmText: "我知道了",
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
+      },
+      fail: err => {
+        console.error('[云函数] [get_myAnswers] 调用失败', err)
+        wx.showModal({
+          title: '调用失败',
+          content: '请检查云函数是否已部署',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    })
+  },
 
     //这个函数用于增加回答 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-      // this.setData({
-      //   question_id: options.question_id
-      // })
+      this.setData({
+        question_id: options.question_id,
+        question_title : options.question_title,
+        question_content : options.question_content
+      })
 
       if (!wx.cloud) {
         wx.showModal({
@@ -263,6 +341,7 @@ Page({
         console.log(this.data.openid)   //
       }
       this.getAnswers()
+      this.getQuestion()
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

@@ -1,5 +1,6 @@
 {
     "pages": [
+        
         "pages/index/index",
         "pages/search/search",
         "pages/product/product",
@@ -14,7 +15,8 @@
         "pages/question_detail/question_detail",
         "pages/more_product/more_product",
         "pages/answer_change/answer_change",
-        "pages/search_more_product/search_more_product"
+        "pages/search_more_product/search_more_product",
+        "pages/hotAnswer_detail/hotAnswer_detail"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",
