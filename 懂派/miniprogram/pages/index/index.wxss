@@ -3,7 +3,6 @@
     margin-top: 30rpx;
     margin-left: 5%;
     margin-right: 5%;
-    margin-bottom: 25 rpx;
     border: 4rpx solid #437dd4;
     border-radius: 10rpx;
     background-color: white;
@@ -215,7 +214,8 @@
 
 
 .more-txt {
-    font-size: 5 rpx;
+    margin-top: 1%;
+    font-size: 15 rpx;
     display: flex;
     flex-direction: row-reverse;
     margin-right: 24rpx;
