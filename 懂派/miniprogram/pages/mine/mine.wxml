@@ -17,8 +17,6 @@
   <view class="buttom-button">
     <button class="bottom-click" size="mini" style="width:200rpx; height:100rpx; margin: 0rpx; padding:0rpx; font-size: 30rpx;" bindtap="question">我的提问</button>
     <button class="bottom-click" size="mini" style="width:200rpx; height:100rpx; margin: 0rpx; padding:0rpx; font-size: 30rpx;" bindtap="answer">我的回答</button>
-    <button class="bottom-click" size="mini" style="width:200rpx; height:100rpx; margin: 0rpx; padding:0rpx; font-size: 30rpx;" bindtap="message">消息</button>
-    <button class="bottom-click" size="mini" style="width:200rpx; height:100rpx; margin: 0rpx; padding:0rpx; font-size: 30rpx;" bindtap="recent">最近浏览</button>
   </view>
 </view>
 

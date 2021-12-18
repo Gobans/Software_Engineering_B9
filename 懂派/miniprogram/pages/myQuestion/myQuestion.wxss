@@ -1,7 +1,7 @@
 /* pages/question/question.wxss */
 
 page{
-  background-color: #EAF0FB;
+  background-color: rgb(248,248,248);
 }
 
 .question{
@@ -10,7 +10,7 @@ page{
   margin-top: 30rpx;
   margin-left: 5%;
   margin-right: 5%;
-  border: 4rpx solid #437dd4;
+  border: 4rpx solid white;
   border-radius: 10rpx;
   background-color: white;
   display: flex;
@@ -63,34 +63,14 @@ page{
 
 .question-info{
   height:20%;
-  width: 100%;
+  width: 90%;
   margin-left: 30rpx;
+  margin-right: 50rpx;
   border-radius: 50%;
   display:flex;
   flex-direction: row;
-}
-
-
-.ans-num{
-  height: 100%;
-  width: 200rpx;
-  color:black;
-  font-size: 32rpx;
-  font-weight: normal;
-  margin-left: 20rpx;
-  display: flex;
-  align-items: center;
-}
-
-.question-status{
-  height: 100%;
-  width: 200rpx;
-  color:black;
-  font-size: 34rpx;
-  font-weight: normal;
-  display: flex;
-  align-items: center;
-  margin-left: 20rpx;
+  direction: rtl;
+  
 }
 
 .bottom-click{
@@ -98,4 +78,6 @@ page{
   width:200rpx;
   background-color: white;
   text-decoration: underline;
+  padding-right: 50rpx;
+  margin-right: 50rpx;
 }

@@ -39,9 +39,8 @@ exports.main = async (event, context) => {
   .field({
     _id: true,
     question_id: true,  
-    answer_content: true,
+    ans_content: true,
     like_cnt:true,
-    is_accept:true
   })
   .get()
   .then(res => {
