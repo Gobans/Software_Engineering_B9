@@ -44,7 +44,7 @@ Page({
 
   gotoIndex: function (e) {
     wx.navigateTo({
-      url: '../search_result/search_result', //需要改成index
+      url: '../index/index', //需要改成index
     })
   },
 

@@ -115,8 +115,8 @@
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 105 rpx;
-    border: 4rpx solid rgb(248,248,248);
-    border-radius: 10rpx;
+    border-bottom: 2rpx solid rgb(187, 186, 186);
+    border-radius: 5rpx;
     background-color: rgb(248,248,248);
     display: flex;
     flex-direction: column;
@@ -125,6 +125,7 @@
 }
 
 .questioninfo {
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: flex-start;

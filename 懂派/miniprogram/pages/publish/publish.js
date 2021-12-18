@@ -21,6 +21,17 @@ Page({
   onLoad: function(e) {
     if(app.globalData.logged == undefined){
       console.log("没有logged属性")
+      wx.showModal({
+        title: '温馨提示',
+        content: "您好，需要登录才能发布问题。",
+        confirmText: "我知道了",
+        showCancel: false,
+        success(res) {
+          wx.redirectTo({
+            url: '../mine/mine',
+          })
+        }
+      })
     }
     else if(app.globalData.logged){      
       this.setData({

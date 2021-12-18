@@ -16,7 +16,7 @@ exports.main = async (event, context) => {
     
     await db.collection('answer')
     .where({
-        question_content:{
+        question_title:{
           $regex:'.*'+search_word+'.*',
           $options:'1'
         }
