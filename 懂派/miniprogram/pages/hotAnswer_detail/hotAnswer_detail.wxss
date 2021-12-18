@@ -7,6 +7,7 @@ page{
   
   .question{
     width: 90%;
+    height: 200rpx;
     margin-top: 30rpx;
     margin-left: 5%;
     margin-right: 5%;
@@ -22,15 +23,6 @@ page{
     color:black;
     font-size: 36rpx;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    margin-left: 20rpx;
-  }
-
-  .question_content{
-    height: 100%;
-    width: 100%;
-    font-size: 36rpx;
     display: flex;
     align-items: center;
     margin-left: 20rpx;

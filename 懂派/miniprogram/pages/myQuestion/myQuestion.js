@@ -15,11 +15,13 @@ Page({
    user_id:""
   },
 
-  getDetail:function(){
+  getDetail:function(e){
+    let question_id = e.currentTarget.dataset.question_id
+    let question_title = e.currentTarget.dataset.question_title
+    let question_content = e.currentTarget.dataset.question_content
     wx.navigateTo({
-      url: '../index/index',
-    })
-    console.log("以后这里是详情页")
+      url: '../question_detail/question_detail?question_id='+ question_id + '&question_title=' + question_title + '&question_content=' + question_content
+  })
   },
 
   

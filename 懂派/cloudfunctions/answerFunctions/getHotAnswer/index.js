@@ -11,10 +11,21 @@ exports.main = async (event, context) => {
 
   //这里应该使用分页查询
   /** 根据用户的openid获取用户回答 start */
-  var question;
-  await db.collection('question')
+  var answers;
+  await db.collection('answer')
   .where({
-    _id: event.question_id,
+    _id: event.answer_id,
+  })
+  .field({
+    _id: true,
+    question_id: true,  
+    ans_content: true,
+    like_cnt:true,
+    is_accept:true,
+    nickName: true,
+    avatarUrl:true,
+    ans_time: true,
+    ans_user_id: true
   })
   .get()
   .then(res => {
@@ -22,7 +33,7 @@ exports.main = async (event, context) => {
     console.log('获取用户提问成功')
     console.log(res.data)
 
-    question = res.data
+    answers = res.data
 
   })
   /** 根据用户的openid获取用户回答 end */
@@ -31,7 +42,7 @@ exports.main = async (event, context) => {
 
   // 返回执行结果
 
-  if(question){
+  if(answers){
 
     result.errCode = 0
     result.errMsg = '查询用户回答成功'
@@ -43,10 +54,10 @@ exports.main = async (event, context) => {
     result.errMsg = '该用户尚无回答'
 
   }
-  console.log(question)
+  console.log(answers)
 
   var data = {}
-  data.question = question
+  data.answers = answers
 
   result.data = data
 
