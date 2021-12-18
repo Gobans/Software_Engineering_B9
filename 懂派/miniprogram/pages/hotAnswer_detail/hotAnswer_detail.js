@@ -1,6 +1,9 @@
-// pages/question_detail/question_detail.js
 const app = getApp()
 Page({
+
+    /**
+     * 页面的初始数据
+     */
     data: {
     nickName: "未名",
     avatarUrl: "/images/user-unlogin.png",
@@ -9,11 +12,23 @@ Page({
     coin: "--",
     is_admin: false,
     question_id:"--",
+    question_detail:"--",
+    question_content:"记笔记用什么平板好",
     answer_id:"--",
     answer_nums:3,
     answers:[],
     question:[],
     },
+    gotoQuestionDetail: function(e){
+      let question_id = e.currentTarget.dataset.question_id
+      let question_title = e.currentTarget.dataset.question_title
+      let question_content = e.currentTarget.dataset.question_content
+      wx.navigateTo({
+        url: '../question_detail/question_detail?question_id='+ question_id + '&question_title=' + question_title + '&question_content=' + question_content
+    })
+    },
+
+
     like:function (e) {
       let ans_id = e.currentTarget.dataset.ans_id
       let like_cnt = e.currentTarget.dataset.like_cnt
@@ -140,7 +155,7 @@ Page({
       }).then((e) => {
         console.log(e);
         wx.hideLoading();
-        wx.redirectTo({url: '../question_detail/question_detail?question_id='+ this.data.question_id})
+        wx.redirectTo({url: 'question_detail'})
       })
     }},
     //这个函数用于管理员删除回答 
@@ -162,14 +177,12 @@ Page({
           avatarUrl:this.data.avatarUrl,
           ans_content: e.detail.value.content,
           ans_time: new Date().toLocaleString(),
-          question_id:this.data.question_id,
-          question_title:this.data.question_title,
-          question_content:this.data.question_content,
+          question_id:this.data.question_id
         }
       }).then((e) => {
         console.log(e);
         wx.hideLoading();
-        wx.redirectTo({url: '../question_detail/question_detail?question_id='+ this.data.question_id})
+        wx.redirectTo({url: 'question_detail'})
       })
   },
   getAnswers: function() {
@@ -178,60 +191,13 @@ Page({
     wx.cloud.callFunction({
       name: 'answerFunctions',
       data: {
-        type:"getAnswer",
-        question_id: that.data.question_id
+        type:"getHotAnswer",
+        answer_id: that.data.answer_id
       },
       success: res => {
         if (res.result.errCode == 0) {
           that.setData({
             answers: res.result.data.answers
-          })
-        } else {
-          wx.showModal({
-            title: '抱歉，出错了呢~',
-            content: res.result.errMsg,
-            confirmText: "我知道了",
-            showCancel: false,
-            success(res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
-          })
-        }
-      },
-      fail: err => {
-        console.error('[云函数] [get_myAnswers] 调用失败', err)
-        wx.showModal({
-          title: '调用失败',
-          content: '请检查云函数是否已部署',
-          showCancel: false,
-          success(res) {
-            if (res.confirm) {
-              console.log('用户点击确定')
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
-        })
-      }
-    })
-  },
-  getQuestion: function() {
-    var that = this
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'questionFunctions',
-      data: {
-        type:"getQuestion",
-        question_id: that.data.question_id
-      },
-      success: res => {
-        if (res.result.errCode == 0) {
-          that.setData({
-            question: res.result.data.question
           })
         } else {
           wx.showModal({
@@ -274,6 +240,9 @@ Page({
     onLoad: function(options) {
       this.setData({
         question_id: options.question_id,
+        question_title:options.question_title,
+        question_content:options.question_content,
+        answer_id : options.answer_id
       })
 
       if (!wx.cloud) {
@@ -308,7 +277,7 @@ Page({
         console.log(this.data.openid)   //
       }
       this.getAnswers()
-      this.getQuestion()
+
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

@@ -1,6 +1,7 @@
 const createAnswer = require('./createAnswer/index');
 const deleteAnswer = require('./deleteAnswer/index');
 const getAnswer = require('./getAnswer/index');
+const getHotAnswer = require('./getHotAnswer/index');
 const getChangeAnswer = require('./getChangeAnswer/index');
 const updateAnswer = require('./updateAnswer/index');
 
@@ -17,5 +18,7 @@ exports.main = async (event, context) => {
       return await getChangeAnswer.main(event, context);
     case 'updateAnswer':
       return await updateAnswer.main(event, context);
+    case 'getHotAnswer':
+      return await getHotAnswer.main(event, context);
   }
 };

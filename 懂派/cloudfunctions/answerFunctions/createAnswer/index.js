@@ -20,6 +20,8 @@ exports.main = async (event, context) => {
         ans_time: event.ans_time,
         ans_content: event.ans_content,
         question_id : event.question_id,
+        question_title : event.question_title,
+        question_content : event.question_content,
         status: true,
       }
     }).then(res=>{
