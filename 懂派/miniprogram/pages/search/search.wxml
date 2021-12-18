@@ -1,7 +1,7 @@
 <!--pages/search/search.wxml-->
 <view class="area" style="display:flex; flex-direction: row; justify-content: space-between; align-items: center;">
     <input class="search_input" placeholder="搜索懂派内容" bindinput="bindKeyInput" value="{{search_word}}"></input>
-    <image class="search_img" src="/../images/search.png" bindtap="search"></image>
+    <image class="search_img" src="cloud://cloud1-5gum0luvfc692c31.636c-cloud1-5gum0luvfc692c31-1307714903/tab_bar/search.png" bindtap="search"></image>
 </view>
 
 <view class="filter-txt">高级搜索</view>
