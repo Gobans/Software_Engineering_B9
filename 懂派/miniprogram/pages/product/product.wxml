@@ -16,7 +16,7 @@
         <view class="title">懂派评分</view>
         <view class="navi-eva">
             <text class="eva-txt" bindtap="gotoEvaluate">去评价</text>
-            <image class="navi_img" src="/../images/navi.png" bindtap="evaluate"></image>
+            <image class="navi_img" src="cloud://cloud1-5gum0luvfc692c31.636c-cloud1-5gum0luvfc692c31-1307714903/tab_bar/navi.png" bindtap="evaluate"></image>
         </view>
     </view>
     <view class="score">{{score}}</view>
@@ -24,7 +24,7 @@
 </view>
 
 <view class="comments">
-<view class="comments-title">懂派短评</view>
+<view class="comments-title">短评</view>
     <view class="comments-content" wx:for="{{product_comments}}" wx:for-item="item">
         <view class="comment-detail">{{item.evaluation_content}}</view>
     </view>

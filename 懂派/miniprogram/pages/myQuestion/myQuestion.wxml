@@ -12,9 +12,6 @@
     </view>
   </button>
   <view class="question-info">
-    <view class="ans-num">{{q.ansNum}}个回答</view>
-    <view class="question-status" hidden="{{q.is_accept?false:true}}">已采纳</view>
-    <view class="question-status" hidden="{{q.is_accept}}"></view>
     <button class="bottom-click" size="mini" style="margin: 0rpx; padding:0rpx; font-size: 30rpx;" bindtap="deleteQuestion">删除问题</button>
   </view>
 </view>
