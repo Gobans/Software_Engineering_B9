@@ -1,12 +1,12 @@
 <!--pages/index/index.wxml-->
 
 <view class="area" style="display:flex; flex-direction: row; justify-content: space-between; align-items: center;" bindtap="search_page">
-    <input class="search_input" placeholder="输入词语.."  value="{{search_word}}"></input>
-    <image class="search_img" src="/../images/search.png" bindtap="search"></image>
+    <input class="search_input" placeholder="输入问题"  value="{{search_word}}"></input>
+    <image class="search_img" src="cloud://cloud1-5gum0luvfc692c31.636c-cloud1-5gum0luvfc692c31-1307714903/tab_bar/search.png" bindtap="search"></image>
 </view>
 
 <view class="more" tyle="display:flex; flex-direction: row; justify-content: space-between;">
-    <text class="more-txt" bindtap="gotoMoreProduct">更多</text>
+    <text class="more-txt" bindtap="gotoMoreProduct">更多排行</text>
 </view>
 
 <view class="product-display" style="display:flex; flex-direction: row; justify-content: space-between;">
@@ -33,7 +33,6 @@
   </button>
   <view class="question-info">
     <view class="ans-num">{{q.like_cnt}}赞</view>
-    <button class="bottom-click" size="mini" style="margin: 0rpx; padding:0rpx; font-size: 30rpx;" bindtap="deleteAnswer">删除回答</button>
   </view>
 </view>
 
