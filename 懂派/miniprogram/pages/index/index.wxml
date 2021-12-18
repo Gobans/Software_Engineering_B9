@@ -27,7 +27,7 @@
     <view class="questioninfo">
       <view class="info-view">
         <view class="question-title">{{q.question_info[0].question_title}}</view>
-        <view class="answer-abstruct">{{q.answer_content}}</view>
+        <view class="answer-abstruct">{{q.ans_content}}</view>
       </view>
     </view>
   </button>

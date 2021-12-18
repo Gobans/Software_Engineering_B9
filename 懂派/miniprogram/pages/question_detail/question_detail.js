@@ -13,10 +13,14 @@ Page({
     answer_nums:3,
     answers:[],
     question:[],
+    previous:"question_detail"
     },
     like:function (e) {
-      let ans_id = e.currentTarget.dataset.ans_id
+      let ans_id = e.currentTarget.dataset.answer_id
       let like_cnt = e.currentTarget.dataset.like_cnt
+      let question_id = this.data.question_id
+      let question_title = this.data.question_title
+      let question_content = this.data.question_content
       console.log(like_cnt)
       wx.cloud.callFunction({
         name: 'likeFunctions',
@@ -46,11 +50,8 @@ Page({
             res =>{
             console.log(res)
             wx.redirectTo({
-            url: 'question_detail',
-            success: (res) => {},
-            fail: (res) => {},
-            complete: (res) => {},
-          })
+              url: '../question_detail/question_detail?question_id=' + question_id  + '&question_title=' + question_title + '&question_content=' + question_content + "&previous=question_detail"
+            })
         })
         }else{
           wx.cloud.callFunction({
@@ -67,12 +68,9 @@ Page({
           }).then( 
             res =>{
             console.log(res)
-            wx.redirectTo({
-            url: 'question_detail',
-            success: (res) => {},
-            fail: (res) => {},
-            complete: (res) => {},
-          })
+              wx.redirectTo({
+                url: '../question_detail/question_detail?question_id=' + question_id  + '&question_title=' + question_title + '&question_content=' + question_content + "&previous=question_detail"
+              })
         })
         }
        
@@ -100,10 +98,12 @@ Page({
       wx.showLoading({
         title: '',
       });
-        let ans_id = e.currentTarget.dataset.ans_id;
-        console.log(ans_id)
-        wx.navigateTo({
-          url: '../answer_change/answer_change?ans_id=' + ans_id,
+      let answer_id = e.currentTarget.dataset.answer_id
+      let question_id = this.data.question_id
+      let question_title = this.data.question_title
+      let question_content = this.data.question_content
+        wx.redirectTo({
+          url: '../answer_change/answer_change?question_id=' + question_id + '&answer_id=' + answer_id + '&question_title=' + question_title + '&question_content=' + question_content + "&previous=question_detail"
         })
     }},
     
@@ -140,12 +140,41 @@ Page({
       }).then((e) => {
         console.log(e);
         wx.hideLoading();
-        wx.redirectTo({url: '../question_detail/question_detail?question_id='+ this.data.question_id})
+        let question_id = this.data.question_id
+        let question_title = this.data.question_title
+        let question_content = this.data.question_content
+          wx.redirectTo({
+            url: '../question_detail/question_detail?question_id=' + question_id  + '&question_title=' + question_title + '&question_content=' + question_content + "&previous=question_detail"
+          })
       })
     }},
     //这个函数用于管理员删除回答 
 
     formSubmit(e) {
+      var that = this
+      if(app.globalData.logged == undefined){
+        
+        wx.showModal({
+          title: '提示',
+          content: "需要登录",
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              wx.redirectTo({
+                url: '../mine/mine',
+                success: (res) => {},
+                fail: (res) => {},
+                complete: (res) => {},
+              })
+              return
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+              return
+            }
+          }
+        })
+      }
+      else{
       wx.showLoading({
         title: '',
       });
@@ -171,6 +200,7 @@ Page({
         wx.hideLoading();
         wx.redirectTo({url: '../question_detail/question_detail?question_id='+ this.data.question_id})
       })
+    }
   },
   getAnswers: function() {
     var that = this
@@ -233,6 +263,7 @@ Page({
           that.setData({
             question: res.result.data.question
           })
+          console.log(res.result.data.question)
         } else {
           wx.showModal({
             title: '抱歉，出错了呢~',
@@ -274,6 +305,8 @@ Page({
     onLoad: function(options) {
       this.setData({
         question_id: options.question_id,
+        question_title : options.question_title,
+        question_content : options.question_content
       })
 
       if (!wx.cloud) {

@@ -12,17 +12,17 @@ Page({
     coin: "--",
     is_admin: false,
     question_id:"--",
-    question_detail:"--",
-    question_content:"记笔记用什么平板好",
+    question_title : "",
+    question_content : "",
     answer_id:"--",
     answer_nums:3,
     answers:[],
     question:[],
     },
     gotoQuestionDetail: function(e){
-      let question_id = e.currentTarget.dataset.question_id
-      let question_title = e.currentTarget.dataset.question_title
-      let question_content = e.currentTarget.dataset.question_content
+      let question_id = this.data.question_id
+      let question_title = this.data.question_title
+      let question_content = this.data.question_content
       wx.navigateTo({
         url: '../question_detail/question_detail?question_id='+ question_id + '&question_title=' + question_title + '&question_content=' + question_content
     })
@@ -32,6 +32,10 @@ Page({
     like:function (e) {
       let ans_id = e.currentTarget.dataset.ans_id
       let like_cnt = e.currentTarget.dataset.like_cnt
+      let answer_id = this.data.answer_id
+      let question_id = this.data.question_id
+      let question_title = this.data.question_title
+      let question_content = this.data.question_content
       console.log(like_cnt)
       wx.cloud.callFunction({
         name: 'likeFunctions',
@@ -61,10 +65,7 @@ Page({
             res =>{
             console.log(res)
             wx.redirectTo({
-            url: 'question_detail',
-            success: (res) => {},
-            fail: (res) => {},
-            complete: (res) => {},
+              url: 'hotAnswer_detail?question_id=' + question_id + '&answer_id=' + answer_id + '&question_title=' + question_title + '&question_content=' + question_content
           })
         })
         }else{
@@ -83,10 +84,7 @@ Page({
             res =>{
             console.log(res)
             wx.redirectTo({
-            url: 'question_detail',
-            success: (res) => {},
-            fail: (res) => {},
-            complete: (res) => {},
+              url: 'hotAnswer_detail?question_id=' + question_id + '&answer_id=' + answer_id + '&question_title=' + question_title + '&question_content=' + question_content
           })
         })
         }
@@ -115,10 +113,13 @@ Page({
       wx.showLoading({
         title: '',
       });
-        let ans_id = e.currentTarget.dataset.ans_id;
+      let answer_id = this.data.answer_id
+      let question_id = this.data.question_id
+      let question_title = this.data.question_title
+      let question_content = this.data.question_content
         console.log(ans_id)
-        wx.navigateTo({
-          url: '../answer_change/answer_change?ans_id=' + ans_id,
+        wx.redirectTo({
+          url: '../answer_change/answer_change?question_id=' + question_id + '&answer_id=' + answer_id + '&question_title=' + question_title + '&question_content=' + question_content + "&previous=hotAnswer_detail"
         })
     }},
     
@@ -155,7 +156,13 @@ Page({
       }).then((e) => {
         console.log(e);
         wx.hideLoading();
-        wx.redirectTo({url: 'question_detail'})
+        let answer_id = this.data.answer_id
+        let question_id = this.data.question_id
+        let question_title = this.data.question_title
+        let question_content = this.data.question_content
+        wx.redirectTo({
+          url: 'hotAnswer_detail?question_id=' + question_id + '&answer_id=' + answer_id + '&question_title=' + question_title + '&question_content=' + question_content
+      })
       })
     }},
     //这个函数用于管理员删除回答 

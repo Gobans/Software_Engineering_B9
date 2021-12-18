@@ -5,8 +5,12 @@ const app = getApp()
 
 Page({
   data: {
-    ans_id: "",
+    answer_id: "",
     answers: [],
+    question_id: "",
+    question_title: "",
+    question_content:"",
+    previous:""
   },
 
   getAnswers: function() {
@@ -16,7 +20,7 @@ Page({
       name: 'answerFunctions',
       data: {
         type:"getChangeAnswer",
-        ans_id: that.data.ans_id
+        ans_id: that.data.answer_id
       },
       success: res => {
         console.log(res);
@@ -60,11 +64,15 @@ Page({
   },
 
   formSubmit(e) {
+    let answer_id = this.data.answer_id
+    let question_id = this.data.question_id
+    let question_title = this.data.question_title
+    let question_content = this.data.question_content
     wx.showLoading({
       title: '',
     });
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    console.log(this.data.ans_id)
+    console.log(this.data.answer_id)
     wx.cloud.callFunction({
       name: 'answerFunctions',
       config: {
@@ -72,26 +80,33 @@ Page({
       },
       data: {
         type: "updateAnswer",
-        ans_id: this.data.ans_id,
+        ans_id: this.data.answer_id,
         ans_content: e.detail.value.content,
         ans_time: new Date().toLocaleString(),
       }
     }).then((e) => {
       console.log(e);
       wx.hideLoading();
+      if(this.data.previous == "hotAnswer_detail"){
       wx.redirectTo({
-        url: '../question_detail/question_detail',
-        success: (res) => {},
-        fail: (res) => {},
-        complete: (res) => {},
-      })
+        url: '../hotAnswer_detail/hotAnswer_detail?question_id=' + question_id + '&answer_id=' + answer_id + '&question_title=' + question_title + '&question_content=' + question_content
+    })
+  }else{
+    wx.redirectTo({
+      url: '../question_detail/question_detail?question_id=' + question_id + '&answer_id=' + answer_id + '&question_title=' + question_title + '&question_content=' + question_content
+  })
+  }
     })
 },
   
   onLoad:function(option) {
     console.log(option.ans_id) 
     this.setData({
-      ans_id : option.ans_id
+      question_id: option.question_id,
+      question_title:option.question_title,
+      question_content:option.question_content,
+      answer_id : option.answer_id,
+      previous : option.previous
     })
     this.getAnswers()
   }
