@@ -27,7 +27,7 @@
     <view class="index">
         <button style="height: 53%; width:100%; padding:0rpx; margin-top: 10rpx;" bindtap="gotoIndex"
             hover-class="none">
-            <image class="index-pic" src="/../images/首页.png" mode="aspectFill"></image>
+            <image class="index-pic" src="cloud://cloud1-5gum0luvfc692c31.636c-cloud1-5gum0luvfc692c31-1307714903/tab_bar/首页.png" mode="aspectFill"></image>
         </button>
         <view class="index-txt">首页</view>
     </view>
@@ -35,14 +35,14 @@
     <view class="publish">
         <button style="height: 53%; width:100%; padding:0rpx; margin-top: 10rpx;" bindtap="gotoPublish"
             hover-class="none">
-            <image class="publish-pic" src="/../images/发布.png" mode="aspectFill"></image>
+            <image class="publish-pic" src="cloud://cloud1-5gum0luvfc692c31.636c-cloud1-5gum0luvfc692c31-1307714903/tab_bar/发布.png" mode="aspectFill"></image>
         </button>
         <view class="index-txt">发布</view>
     </view>
 
     <view class="mine">
         <button style="height: 53%; width:100%; padding:0rpx; margin-top: 10rpx;" bindtap="gotoMine" hover-class="none">
-            <image class="publish-pic" src="/../images/我的.png" mode="aspectFill"></image>
+            <image class="publish-pic" src="cloud://cloud1-5gum0luvfc692c31.636c-cloud1-5gum0luvfc692c31-1307714903/tab_bar/我的.png" mode="aspectFill"></image>
         </button>
         <view class="index-txt">我的</view>
     </view>
