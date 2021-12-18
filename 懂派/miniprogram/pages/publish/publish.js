@@ -23,7 +23,9 @@ Page({
       console.log("没有logged属性")
       wx.showModal({
         title: '温馨提示',
-        content: "没有登录了，需要登录。",
+
+        content: "您好，需要登录才能发布问题。",
+
         confirmText: "我知道了",
         showCancel: false,
         success(res) {

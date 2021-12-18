@@ -28,13 +28,12 @@
     <view class="questioninfo">
       <view class="info-view">
         <view class="question-title">{{q.question_title}}</view>
-        <view class="answer-abstruct">{{q.answer_content}}</view>
+        <view class="answer-abstruct">{{q.ans_content}}</view>
       </view>
     </view>
   </button>
   <view class="question-info">
     <view class="ans-num">{{q.like_cnt}}赞</view>
-    <button class="bottom-click" size="mini" style="margin: 0rpx; padding:0rpx; font-size: 30rpx;" bindtap="deleteAnswer">删除回答</button>
   </view>
 </view>
 

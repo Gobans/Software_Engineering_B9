@@ -15,7 +15,7 @@
         </view>
         <view class="answer_content">{{item.ans_content}}</view>
         <view class="answer_status">
-            <button class="likeButton" size="mini" bindtap="like" data-ans_id="{{item._id}}" data-like_cnt="{{item.like_cnt}}">like</button>
+
             <view class="like_cnt">{{item.like_cnt}}赞同</view>
             <view class="is_accept" hidden="{{item.is_accept?false:true}}">已采纳</view>
             <view class="is_accept" hidden="{{item.is_accept}}"></view>

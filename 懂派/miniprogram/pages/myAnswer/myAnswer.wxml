@@ -12,6 +12,6 @@
   </button>
   <view class="question-info">
     <view class="ans-num">{{ans.like_cnt}}赞同</view>
-    <button class="bottom-click" size="mini" style="margin: 0rpx; padding:0rpx; font-size: 30rpx;" data-id="{{ans._id}}" bindtap="deleteAnswer">删除回答</button>
+    <button class="bottom-click" size="mini" style="margin: 0rpx; padding:0rpx; font-size: 30rpx;" data-id="{{ans._id}}" bindtap="deleteAnswer">删除</button>
   </view>
 </view>
