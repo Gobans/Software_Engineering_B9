@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<form catchsubmit="formSubmit" catchreset="formReset">
+<view class="menubar">
+  <button class="cancel" formType="reset" size="mini">清空</button>
+  <button class="post" formType="submit" size="mini">发布</button>
+</view>
+  
+<view class="question-container"> 
+  <input type="text" placeholder="题目" class="question-content" name="title"></input>
+</view>
+
+<textarea class="textArea" placeholder="内容" name="content" ></textarea>
+</form>
+<view  wx:if="{{imgSrc}}" class="code_box">
+    <image class="code_img" src="{{imgSrc}}"></image>
+  </view>
+<view class="uploadButton" bindtap="uploadImg" wx:if="{{!haveGetImgSrc}}">上传一张图片</view>
+<view class="button_clear" bindtap="clearImgSrc" wx:if="{{haveGetImgSrc}}">清空</view>
+

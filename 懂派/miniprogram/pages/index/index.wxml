@@ -1,0 +1,65 @@
+<!--pages/index/index.wxml-->
+
+<view class="area" style="display:flex; flex-direction: row; justify-content: space-between; align-items: center;" bindtap="search_page">
+    <input class="search_input" placeholder="输入词语.."  value="{{search_word}}"></input>
+    <image class="search_img" src="/../images/search.png" bindtap="search"></image>
+</view>
+
+<view class="more" tyle="display:flex; flex-direction: row; justify-content: space-between;">
+    <text class="more-txt" bindtap="gotoMoreProduct">更多</text>
+</view>
+
+<view class="product-display" style="display:flex; flex-direction: row; justify-content: space-between;">
+    <view class="product-block" wx:for="{{hot_products}}" wx:for-item="itemName">
+        <button style="width:100%; margin:0rpx; padding:0rpx; flex-direction: column;" 
+            hover-class="none" bindtap="gotoProduct" data-id="{{itemName.product_id}}">
+            <image class="productinfo-avatar" src="{{itemName.pic_url}}" mode="scaleToFill" ></image>
+            <view class="productinfo-name">{{itemName.product_name}}</view>
+        </button>
+    </view>
+</view>
+
+
+<view class="question" wx:for="{{questions}}" wx:for-item="q" >
+  <button style="width:100%; height:80%; margin:0rpx; padding:0rpx;" 
+  data-question_id = "{{q.question_info[0]._id}}" data-answer_id = "{{q._id}}"  data-question_title ="{{q.question_info[0].question_title}}" data-question_content ="{{q.question_info[0].question_content}}" bindtap="gotohotAnswerDetail"  hover-class="none">
+
+    <view class="questioninfo">
+      <view class="info-view">
+        <view class="question-title">{{q.question_info[0].question_title}}</view>
+        <view class="answer-abstruct">{{q.answer_content}}</view>
+      </view>
+    </view>
+  </button>
+  <view class="question-info">
+    <view class="ans-num">{{q.like_cnt}}赞</view>
+    <button class="bottom-click" size="mini" style="margin: 0rpx; padding:0rpx; font-size: 30rpx;" bindtap="deleteAnswer">删除回答</button>
+  </view>
+</view>
+
+
+<view class="tab-bar"
+    style="background: {{tarBar.backgroundColor}}; {{tabBar.position=='top'? 'top: 0' : 'bottom: 0'}}; {{tabBar.borderStyle? (tabBar.position=='top'? 'border-bottom: solid 1px '+tabBar.borderStyle + ';' : 'border-top: solid 1px '+tabBar.borderStyle + ';') : ''}}">
+    <view class="index">
+        <button style="height: 53%; width:100%; padding:0rpx; margin-top: 10rpx;" bindtap="gotoIndex"
+            hover-class="none">
+            <image class="index-pic" src="cloud://cloud1-5gum0luvfc692c31.636c-cloud1-5gum0luvfc692c31-1307714903/tab_bar/首页.png" mode="aspectFill"></image>
+        </button>
+        <view class="index-txt">首页</view>
+    </view>
+
+    <view class="publish">
+        <button style="height: 53%; width:100%; padding:0rpx; margin-top: 10rpx;" bindtap="gotoPublish"
+            hover-class="none">
+            <image class="publish-pic" src="cloud://cloud1-5gum0luvfc692c31.636c-cloud1-5gum0luvfc692c31-1307714903/tab_bar/发布.png" mode="aspectFill"></image>
+        </button>
+        <view class="index-txt">发布</view>
+    </view>
+
+    <view class="mine">
+        <button style="height: 53%; width:100%; padding:0rpx; margin-top: 10rpx;" bindtap="gotoMine" hover-class="none">
+            <image class="publish-pic" src="cloud://cloud1-5gum0luvfc692c31.636c-cloud1-5gum0luvfc692c31-1307714903/tab_bar/我的.png" mode="aspectFill"></image>
+        </button>
+        <view class="index-txt">我的</view>
+    </view>
+</view>

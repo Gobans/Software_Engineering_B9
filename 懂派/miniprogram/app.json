@@ -1,0 +1,29 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/search/search",
+        "pages/product/product",
+        "pages/evaluate/evaluate",
+        "pages/publish_answer/publish_answer",
+        "pages/answer_specific/answer_specific",
+        "pages/mine/mine",
+        "pages/myAnswer/myAnswer",
+        "pages/myQuestion/myQuestion",
+        "pages/search_result/search_result",
+        "pages/publish_question/publish_question",
+        "pages/question_detail/question_detail",
+        "pages/more_product/more_product",
+        "pages/answer_change/answer_change",
+        "pages/search_more_product/search_more_product",
+        "pages/hotAnswer_detail/hotAnswer_detail"
+    ],
+    "window": {
+        "backgroundColor": "#F6F6F6",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#F6F6F6",
+        "navigationBarTitleText": "懂派",
+        "navigationBarTextStyle": "black"
+    },
+    "sitemapLocation": "sitemap.json",
+    "style": "v2"
+}

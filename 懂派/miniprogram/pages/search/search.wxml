@@ -1,0 +1,33 @@
+<!--pages/search/search.wxml-->
+<view class="area" style="display:flex; flex-direction: row; justify-content: space-between; align-items: center;">
+    <input class="search_input" placeholder="输入词语.." bindinput="bindKeyInput" value="{{search_word}}"></input>
+    <image class="search_img" src="/../images/search.png" bindtap="search"></image>
+</view>
+
+<view class="filter-txt">高级筛选</view>
+
+<view class="filter">
+<view class="filter-type">价格区间(元)</view>
+<input class="filter-input" placeholder="下限" bindinput="bindPriceLowInput" value="{{price}}"></input>
+<input class="filter-input" placeholder="上限" bindinput="bindPriceHighInput" value="{{price}}"></input>
+</view>
+
+<view class="filter">
+<view class="filter-type">续航(小时)</view>
+<input class="filter-input" placeholder="下限" bindinput="bindDurationLowInput" value="{{duration}}"></input>
+<input class="filter-input" placeholder="上限" bindinput="bindDurationHighInput" value="{{duration}}"></input>
+</view>
+
+<view class="filter">
+<view class="filter-type">重量(克)</view>
+<input class="filter-input" placeholder="下限" bindinput="bindWeightLowInput" value="{{weight}}"></input>
+<input class="filter-input" placeholder="上限" bindinput="bindWeightHighInput" value="{{weight}}"></input>
+</view>
+
+<view class="filter">
+<view class="filter-type">厚度(mm)</view>
+<input class="filter-input" placeholder="下限" bindinput="bindThicknessLowInput" value="{{thickness}}"></input>
+<input class="filter-input" placeholder="上限" bindinput="bindThicknessHighInput" value="{{thickness}}"></input>
+</view>
+
+
