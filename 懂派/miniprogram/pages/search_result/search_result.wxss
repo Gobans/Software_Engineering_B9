@@ -210,14 +210,14 @@
     height: 20 rpx;
     width: 95%;
     margin-right: 5%;
-    background-color: aquamarine;
     position: relative;
 }
 
 
-.more-txt{
-    font-size: 5 rpx;
-    position: fixed;
-    right: 0;
+.more-txt {
+    margin-top: 1%;
+    font-size: 15 rpx;
+    display: flex;
+    flex-direction: row-reverse;
     margin-right: 24rpx;
 }
